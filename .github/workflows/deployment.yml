@@ -1,0 +1,40 @@
+name: deploy project
+
+on: push
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download code from repository on the provisioned ubutu
+        uses: actions/checkout@v4
+
+      - name: install NodeJS - the developer will provide all the instructions on how to run the app, including all dependencies
+        uses: actions/setup-node@v3
+        with:
+            node-version: 18
+      - name: install dependencies
+        run: npm ci
+      - name: run test
+        run: npm test
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download code from repository on the provisioned ubutu
+        uses: actions/checkout@v4
+
+      - name: install NodeJS - the developer will provide all the instructions on how to run the app, including all dependencies
+        uses: actions/setup-node@v3
+        with:
+            node-version: 18
+      - name: install dependencies
+        run: npm ci
+      - name: build project
+        run: npm run build
+      - name: deploy
+        run: echo "Deploy - I will be a successfull DevOps/MLOps engineer"
+
+
+        
